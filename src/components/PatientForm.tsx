@@ -1,18 +1,42 @@
+import {useEffect} from 'react';
 import {useForm} from 'react-hook-form';
+import {toast} from 'react-toastify';
 import {HandleError} from './HandleError';
 import {DraftPatient} from '../interface';
 import {usePatientStore} from '../store/store';
+import 'react-toastify/dist/ReactToastify.css';
 export default function PatientForm() {
   const addPatient = usePatientStore(state => state.addPatient); //*addPatient is the function that will be used to add a new patient
-
+  const activeId = usePatientStore(state => state.activeId); //* activeId is the id of the patient that is being edited
+  const patients = usePatientStore(state => state.patients); //*
+  const updatePatient = usePatientStore(state => state.updadatePatient); //*
   const {
     register,
     handleSubmit,
+    setValue,
     formState: {errors},
     reset,
   } = useForm<DraftPatient>(); //* DraftPatient is the type of data that will be sent
+  useEffect(() => {
+    if (activeId) {
+      const activePatient = patients.filter(
+        patient => patient.id === activeId
+      )[0]; //* return Object [0]
+      console.log(activePatient);
+      setValue('name', activePatient.name);
+      setValue('email', activePatient.email);
+      setValue('date', activePatient.date);
+      setValue('symptoms', activePatient.symptoms);
+    }
+  }, [activeId]);
   const registerPatient = (data: DraftPatient) => {
-    addPatient(data);
+    if (activeId) {
+      updatePatient(data);
+      toast.success('Patient Updated Successfully'); //*
+    } else {
+      addPatient(data);
+      toast.success('Patient Added Successfully'); //*
+    }
     reset();
     console.log('registerPatient', data);
   };
@@ -101,7 +125,7 @@ export default function PatientForm() {
         <input
           type="submit"
           className="bg-cyan-600 w-full p-3 text-white uppercase font-bold hover:bg-cyan-700 cursor-pointer transition-colors rounded-lg "
-          value="Save"
+          value={activeId ? 'Update Patient' : 'Add Patient'}
         />
       </form>
     </div>

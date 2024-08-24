@@ -1,3 +1,4 @@
+import {Bounce, ToastContainer} from 'react-toastify';
 import PatientForm from './components/PatientForm';
 import {PatientsList} from './components/PatientsList';
 
@@ -14,6 +15,13 @@ function App() {
           <PatientsList />
         </div>
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={3000}
+        closeOnClick
+        theme="dark"
+        transition={Bounce}
+      />
     </>
   );
 }
