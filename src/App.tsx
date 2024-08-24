@@ -1,6 +1,7 @@
 import {Bounce, ToastContainer} from 'react-toastify';
 import PatientForm from './components/PatientForm';
 import {PatientsList} from './components/PatientsList';
+import {SocialMedia} from './components/SocialMedia';
 
 function App() {
   return (
@@ -15,6 +16,9 @@ function App() {
           <PatientsList />
         </div>
       </div>
+      <footer className="bg-cyan-600  shadow p-5">
+        <SocialMedia />
+      </footer>
       <ToastContainer
         position="bottom-center"
         autoClose={3000}
