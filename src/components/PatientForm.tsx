@@ -28,7 +28,7 @@ export default function PatientForm() {
       setValue('date', activePatient.date);
       setValue('symptoms', activePatient.symptoms);
     }
-  }, [activeId]);
+  }, [activeId, patients, setValue]);
   const registerPatient = (data: DraftPatient) => {
     if (activeId) {
       updatePatient(data);
