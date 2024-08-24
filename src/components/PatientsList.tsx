@@ -4,7 +4,10 @@ export const PatientsList = () => {
   const patients = usePatientStore(state => state.patients);
   console.log('patients', patients);
   return (
-    <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
+    <div
+      className={`md:w-1/2 lg:w-3/5 md:max-h-screen  
+         ${patients.length ? 'overflow-y-scroll' : ''}`}
+    >
       {patients.length ? (
         <>
           <h2 className="font-black text-center text-3xl text-cyan-600">
@@ -23,12 +26,15 @@ export const PatientsList = () => {
       ) : (
         <>
           {' '}
-          <h2 className="font-black text-2xl bg-red-600 text-center text-white p-2 rounded-lg mx-5 ">
+          <h2 className="font-black text-2xl bg-red-600 text-center text-white p-2 rounded-lg mx-1 ">
             Not Patients Yet
           </h2>
-          <p className="text-xl mt-5 text-center mb-10">
+          <p className="text-xl mt-10 text-center mb-10 leading-10 ">
             {' '}
-            Add new Patients and show them right here{' '}
+            <span className="bg-cyan-700 text-white p-2 rounded-lg font-bold ">
+              Add new patients
+            </span>{' '}
+            and show them right here{' '}
           </p>
         </>
       )}

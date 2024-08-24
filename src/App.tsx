@@ -10,7 +10,7 @@ function App() {
           Clinical Patient Monitoring System
         </h1>
 
-        <div className="mt-12 md:flex md:gap-5">
+        <div className="mt-12 md:flex md:gap-5 ">
           <PatientForm />
           <PatientsList />
         </div>
