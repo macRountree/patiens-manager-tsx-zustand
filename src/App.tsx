@@ -16,7 +16,7 @@ function App() {
           <PatientsList />
         </div>
       </div>
-      <footer className="bg-cyan-600  shadow p-5">
+      <footer className="bg-cyan-600 max-h-full shadow p-5">
         <SocialMedia />
       </footer>
       <ToastContainer
